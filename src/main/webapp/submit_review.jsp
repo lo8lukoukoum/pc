@@ -8,10 +8,10 @@
     <h2>发表评价 (Submit Review)</h2>
 
     <c:if test="${not empty requestScope.errorMessage}">
-        <p style="color:red;"><c:out value="${requestScope.errorMessage}"/></p>
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
     </c:if>
     <c:if test="${not empty param.reviewError}">
-        <p style="color:red;"><c:out value="${param.reviewError}"/></p>
+        <span class="error-message"><c:out value="${param.reviewError}"/></span>
     </c:if>
 
     <c:if test="${not empty productToReview && not empty orderIdForReview}">
@@ -59,8 +59,8 @@
     </c:if>
 
     <c:if test="${empty productToReview || empty orderIdForReview}">
-        <p>无法加载评价表单，缺少商品或订单信息。(Could not load review form, missing product or order information.)</p>
-        <p><a href="${pageContext.request.contextPath}/order_history.jsp">返回订单列表 (Back to Order History)</a></p>
+        <p class="info-message">无法加载评价表单，缺少商品或订单信息。(Could not load review form, missing product or order information.)</p>
+        <p><a href="${pageContext.request.contextPath}/order_history.jsp" class="button">返回订单列表 (Back to Order History)</a></p>
     </c:if>
 </section>
 

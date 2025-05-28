@@ -13,10 +13,10 @@
     </h2>
 
     <c:if test="${not empty errorMessage}">
-        <p style="color:red; border: 1px solid red; padding: 10px;"><c:out value="${errorMessage}"/></p>
+        <span class="error-message"><c:out value="${errorMessage}"/></span>
     </c:if>
     <c:if test="${not empty param.saveError}">
-        <p style="color:red; border: 1px solid red; padding: 10px;"><c:out value="${param.saveError}"/></p>
+        <span class="error-message"><c:out value="${param.saveError}"/></span>
     </c:if>
 
 

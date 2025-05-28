@@ -8,15 +8,15 @@
     <h2>我的订单 (My Orders)</h2>
 
     <c:if test="${param.orderSuccess == 'true'}">
-        <p style="color:green;">订单 #${param.orderId} 已成功提交！(Order #${param.orderId} placed successfully!)</p>
+        <span class="success-message">订单 #${param.orderId} 已成功提交！(Order #${param.orderId} placed successfully!)</span>
     </c:if>
     <c:if test="${not empty requestScope.errorMessage}">
-        <p style="color:red;"><c:out value="${requestScope.errorMessage}"/></p>
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
     </c:if>
 
     <c:choose>
         <c:when test="${empty orderList}">
-            <p>您还没有下过任何订单。(You have not placed any orders yet.)</p>
+            <p class="info-message">您还没有下过任何订单。(You have not placed any orders yet.)</p>
         </c:when>
         <c:otherwise>
             <table class="order-history-table">

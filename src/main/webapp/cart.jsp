@@ -8,25 +8,25 @@
     <h2>购物车 (Shopping Cart)</h2>
 
     <c:if test="${param.addSuccess == 'true'}">
-        <p style="color:green;">商品已成功添加到购物车！(Product successfully added to cart!)</p>
+        <span class="success-message">商品已成功添加到购物车！(Product successfully added to cart!)</span>
     </c:if>
     <c:if test="${param.updateSuccess == 'true'}">
-        <p style="color:green;">购物车已更新。(Cart updated successfully.)</p>
+        <span class="success-message">购物车已更新。(Cart updated successfully.)</span>
     </c:if>
     <c:if test="${param.removeSuccess == 'true'}">
-        <p style="color:green;">商品已从购物车移除。(Product removed from cart.)</p>
+        <span class="success-message">商品已从购物车移除。(Product removed from cart.)</span>
     </c:if>
     <c:if test="${not empty param.cartError}">
-        <p style="color:red;"><c:out value="${param.cartError}"/></p>
+        <span class="error-message"><c:out value="${param.cartError}"/></span>
     </c:if>
     <c:if test="${not empty requestScope.errorMessage}">
-        <p style="color:red;"><c:out value="${requestScope.errorMessage}"/></p>
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
     </c:if>
 
     <c:choose>
         <c:when test="${empty cartItems}">
-            <p>您的购物车是空的。(Your cart is empty.)</p>
-            <p><a href="${pageContext.request.contextPath}/products.jsp">继续购物 (Continue Shopping)</a></p>
+            <p class="info-message">您的购物车是空的。(Your cart is empty.)</p>
+            <p><a href="${pageContext.request.contextPath}/products.jsp" class="button">继续购物 (Continue Shopping)</a></p>
         </c:when>
         <c:otherwise>
             <table class="cart-table">

@@ -12,13 +12,30 @@
         <a href="${pageContext.request.contextPath}/admin/customer_form.jsp" class="admin-button add-new">添加新客户 (Add New Customer)</a>
     </p>
 
+    <c:if test="${param.resetSuccess == 'true'}">
+        <span class="success-message">用户 ID ${param.userId} 的密码已重置。新临时密码为: <strong><c:out value="${param.tempPass}"/></strong> (请立即通知用户修改密码)。</span>
+    </c:if>
+    <c:if test="${not empty param.deleteError}">
+         <span class="error-message"><c:out value="${param.deleteError}"/></span>
+    </c:if>
+    <c:if test="${not empty param.deleteSuccess}">
+         <span class="success-message">用户 ID ${param.userId} 已成功删除。</span>
+    </c:if>
+     <c:if test="${not empty param.resetError}">
+         <span class="error-message"><c:out value="${param.resetError}"/></span>
+    </c:if>
+    <c:if test="${not empty param.saveSuccess}">
+         <span class="success-message">客户信息已成功保存 (ID: ${param.userId})。</span>
+    </c:if>
+
+
     <c:if test="${not empty errorMessage}">
-        <p style="color:red;"><c:out value="${errorMessage}"/></p>
+        <span class="error-message"><c:out value="${errorMessage}"/></span>
     </c:if>
 
     <c:choose>
         <c:when test="${empty customerList}">
-            <p>没有找到客户。(No customers found.)</p>
+            <p class="info-message">没有找到客户。(No customers found.)</p>
         </c:when>
         <c:otherwise>
             <table class="admin-table">

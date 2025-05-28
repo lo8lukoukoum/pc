@@ -5,6 +5,17 @@
 <jsp:include page="jsp/header.jsp" />
 
 <section id="product-detail-section">
+    <%-- Display error messages related to product loading or cart operations --%>
+    <c:if test="${not empty requestScope.errorMessage}">
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
+    </c:if>
+    <c:if test="${not empty param.cartError}">
+        <span class="error-message"><c:out value="${param.cartError}"/></span>
+    </c:if>
+    <c:if test="${param.reviewSuccess == 'true'}">
+        <span class="success-message">您的评价已成功提交，正在等待审核。(Your review has been submitted and is pending approval.)</span>
+    </c:if>
+
     <c:choose>
         <c:when test="${not empty product}">
             <h2>商品详情 (Product Details)</h2>
@@ -64,7 +75,9 @@
                                 </p>
                                 <p>
                                     <strong>评分 (Rating):</strong> 
-                                    <c:forEach begin="1" end="${review.rating}">★</c:forEach><c:forEach begin="${review.rating + 1}" end="5">☆</c:forEach>
+                                    <span class="rating-display">
+                                       <c:forEach begin="1" end="${review.rating}"><span class="filled-star">★</span></c:forEach><c:forEach begin="${review.rating + 1}" end="5"><span class="empty-star">☆</span></c:forEach>
+                                    </span>
                                     (<c:out value="${review.rating}"/>/5)
                                 </p>
                                 <p><strong>评论 (Comment):</strong> <c:out value="${review.comment}"/></p>
@@ -79,7 +92,7 @@
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <p>暂无评价。(No reviews yet.)</p>
+                        <p class="info-message">暂无评价。(No reviews yet.)</p>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -87,8 +100,8 @@
         </c:when>
         <c:otherwise>
              <h2>商品未找到 (Product Not Found)</h2>
-             <p>抱歉，您请求的商品不存在或已被下架。(Sorry, the product you requested does not exist or has been removed.)</p>
-             <p><a href="${pageContext.request.contextPath}/products.jsp">返回商品列表 (Back to Product List)</a></p>
+             <p class="info-message">抱歉，您请求的商品不存在或已被下架。(Sorry, the product you requested does not exist or has been removed.)</p>
+             <p><a href="${pageContext.request.contextPath}/products.jsp" class="button">返回商品列表 (Back to Product List)</a></p>
         </c:otherwise>
     </c:choose>
 </section>

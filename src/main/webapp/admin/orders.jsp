@@ -22,12 +22,15 @@
     </form>
 
     <c:if test="${not empty errorMessage}">
-        <p style="color:red;"><c:out value="${errorMessage}"/></p>
+        <span class="error-message"><c:out value="${errorMessage}"/></span>
+    </c:if>
+    <c:if test="${not empty param.error}">
+        <span class="error-message"><c:out value="${param.error}"/></span>
     </c:if>
 
     <c:choose>
         <c:when test="${empty orderList}">
-            <p>没有符合条件的订单。(No orders match criteria.)</p>
+            <p class="info-message">没有符合条件的订单。(No orders match criteria.)</p>
         </c:when>
         <c:otherwise>
             <table class="admin-table">

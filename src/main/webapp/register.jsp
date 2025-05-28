@@ -5,14 +5,9 @@
     <h2>用户注册 (User Registration)</h2>
 
     <%-- Placeholder for displaying error messages from the servlet --%>
-    <div style="color: red;">
-        <%
-            String errorMessage = (String) request.getAttribute("errorMessage");
-            if (errorMessage != null) {
-                out.println("<p>" + errorMessage + "</p>");
-            }
-        %>
-    </div>
+    <c:if test="${not empty requestScope.errorMessage}">
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
+    </c:if>
 
     <form action="${pageContext.request.contextPath}/register" method="POST" onsubmit="return validateForm();">
         <p>

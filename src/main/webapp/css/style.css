@@ -1,0 +1,517 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: #333; /* Darker headings */
+}
+
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; margin-bottom: 15px; }
+h3 { font-size: 1.5em; margin-bottom: 10px; }
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: #007bff; /* Primary color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.container { /* Optional: a general container for centering content */
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Header & Navigation */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: #007bff 3px solid;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header h1 a {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+header h1 a:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+header nav {
+    float: right;
+    margin-top: 5px;
+}
+
+header nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 15px;
+}
+
+header nav ul li a {
+    font-size: 1.1em;
+}
+
+header nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Search Bar in Header */
+header .search-bar {
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+header .search-bar input[type="text"] {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+header .search-bar button {
+    padding: 6px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+header .search-bar button:hover {
+    background: #0056b3;
+}
+
+
+/* Main Content Area */
+main {
+    padding: 20px;
+    min-height: 70vh; /* Ensure footer is pushed down */
+}
+
+section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+footer a {
+    color: #007bff;
+}
+footer a:hover {
+    color: #fff;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.form-group input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Buttons */
+button, .button, input[type="submit"] {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #fff !important; /* Ensure text is white for colored buttons */
+    background-color: #007bff; /* Primary button color */
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover, input[type="submit"]:hover {
+    background-color: #0056b3;
+    color: #fff !important;
+}
+
+/* Specific Button Types */
+.button-primary { /* Can be used for main call-to-action buttons */
+    background-color: #007bff;
+}
+.button-primary:hover {
+    background-color: #0056b3;
+}
+
+.button-success, .add-to-cart-button { /* For "Add to Cart", "Save" */
+    background-color: #28a745; /* Green */
+}
+.button-success:hover, .add-to-cart-button:hover {
+    background-color: #1e7e34;
+}
+
+.button-danger, .delete-button { /* For "Delete" */
+    background-color: #dc3545; /* Red */
+}
+.button-danger:hover, .delete-button:hover {
+    background-color: #bd2130;
+}
+
+.button-info { /* For "View Details", "Update" in cart */
+    background-color: #17a2b8; /* Teal/Info */
+}
+.button-info:hover {
+    background-color: #117a8b;
+}
+
+.button-warning { /* For "Edit", "Change Status" */
+    background-color: #ffc107; /* Yellow */
+    color: #212529 !important; /* Dark text for yellow button */
+}
+.button-warning:hover {
+    background-color: #e0a800;
+    color: #212529 !important;
+}
+
+.button-secondary { /* For "Cancel", less prominent actions */
+    background-color: #6c757d; /* Gray */
+}
+.button-secondary:hover {
+    background-color: #545b62;
+}
+
+
+button:disabled, .button:disabled, input[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray for even rows */
+}
+
+table tr:hover {
+    background-color: #f1f1f1; /* Slightly darker gray on hover */
+}
+
+table img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 3px;
+}
+
+/* Messages */
+.error-message {
+    color: #dc3545; /* Red */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: block; /* Make it block to take full width */
+}
+
+.success-message {
+    color: #28a745; /* Green */
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: block; /* Make it block to take full width */
+}
+
+.info-message { /* For general info like "cart is empty" */
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+
+/* Product Display */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 0; /* Reset padding if section has it */
+}
+
+.product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.product-item img {
+    width: 100%;
+    max-width: 180px; /* Control max image size */
+    height: 180px; /* Fixed height */
+    object-fit: cover; /* Scale image nicely */
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.product-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #333;
+}
+.product-item a h3:hover {
+    color: #007bff;
+}
+
+
+.product-item .price {
+    font-size: 1.15em;
+    color: #007bff; /* Primary color for price */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-item .description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+    height: 3.6em; /* Approx 2 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.8em;
+}
+
+.product-item .details-button {
+    background-color: #6c757d; /* Secondary/Gray */
+    margin-bottom: 5px;
+}
+.product-item .details-button:hover {
+    background-color: #545b62;
+}
+
+
+/* Product Detail Page */
+.product-detail-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 30px;
+    margin-top: 0; /* Reset margin if section has it */
+}
+.product-image-lg {
+    flex: 1;
+    min-width: 280px; /* Ensure image doesn't get too small */
+}
+.product-image-lg img {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.product-info {
+    flex: 1.5; /* Info takes more space */
+    min-width: 300px;
+}
+.product-info h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.product-info .price {
+    font-size: 1.6em;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.product-info p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Review Section */
+.review-item {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.review-item:last-child {
+    border-bottom: none;
+}
+.rating-stars {
+    display: inline-block;
+    direction: rtl;
+}
+.rating-stars input[type="radio"] {
+    display: none;
+}
+.rating-stars label {
+    font-size: 1.5em; /* Adjusted size for review display */
+    color: #ddd;
+    cursor: default; /* Not clickable in display */
+    padding: 0 0.05em;
+    display: inline-block;
+}
+.rating-stars input[type="radio"]:checked ~ label, /* For form */
+.review-item .filled-star { /* For display */
+    color: #f5b301;
+}
+
+
+/* Admin Area Specifics */
+.admin-links { list-style-type: none; padding: 0; }
+.admin-links li { margin-bottom: 10px; }
+.admin-links li a { font-size: 1.2em; text-decoration: none; padding: 8px; display: block; background: #e9ecef; border-radius: 4px; }
+.admin-links li a:hover { background: #ced4da; color: #0056b3; }
+
+.admin-table { /* Already defined, but can add specifics if needed */
+    font-size: 0.9em;
+}
+
+.admin-button { /* General admin button style, can be more specific */
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: white !important;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px; /* For buttons that wrap */
+}
+.admin-button.add-new    { background-color: #28a745; }
+.admin-button.edit       { background-color: #ffc107; color: #212529 !important; }
+.admin-button.delete     { background-color: #dc3545; }
+.admin-button.view       { background-color: #17a2b8; }
+.admin-button.change-status,
+.admin-button.update-status { background-color: #ffc107; color: #212529 !important; }
+.admin-button.reset-password { background-color: #007bff; }
+.admin-button.filter     { background-color: #007bff; }
+.admin-button.save       { background-color: #28a745; }
+.admin-button.cancel     { background-color: #6c757d; }
+.admin-button.export     { background-color: #17a2b8; }
+
+.admin-button.add-new:hover    { background-color: #1e7e34; }
+.admin-button.edit:hover       { background-color: #e0a800; }
+.admin-button.delete:hover     { background-color: #bd2130; }
+.admin-button.view:hover       { background-color: #117a8b; }
+.admin-button.change-status:hover,
+.admin-button.update-status:hover { background-color: #e0a800; }
+.admin-button.reset-password:hover { background-color: #0056b3; }
+.admin-button.filter:hover     { background-color: #0056b3; }
+.admin-button.save:hover       { background-color: #1e7e34; }
+.admin-button.cancel:hover     { background-color: #545b62; }
+.admin-button.export:hover     { background-color: #138496; }
+
+
+/* Basic Responsiveness */
+@media (max-width: 768px) {
+    header nav, header .search-bar {
+        float: none;
+        text-align: center;
+        margin-top: 10px;
+    }
+    header nav ul li {
+        display: block;
+        margin: 5px 0;
+    }
+    header .search-bar {
+        margin-right: 0;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust for smaller screens */
+    }
+    .checkout-container, .stats-columns {
+        flex-direction: column;
+    }
+}

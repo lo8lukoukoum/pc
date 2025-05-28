@@ -16,12 +16,15 @@
     </c:choose>
 
     <c:if test="${not empty errorMessage}">
-        <p style="color:red;"><c:out value="${errorMessage}"/></p>
+        <span class="error-message"><c:out value="${errorMessage}"/></span>
+    </c:if>
+    <c:if test="${not empty param.error}">
+        <span class="error-message"><c:out value="${param.error}"/></span>
     </c:if>
 
     <c:choose>
         <c:when test="${empty productList}">
-            <p>当前没有可供展示的商品。(No products available at the moment.)</p>
+            <p class="info-message">当前没有可供展示的商品。(No products available at the moment.)</p>
         </c:when>
         <c:otherwise>
             <div class="product-grid">

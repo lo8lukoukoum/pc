@@ -8,13 +8,13 @@
     <h2>订单详情 - 管理员视图 (Order Details - Admin View)</h2>
 
     <c:if test="${not empty requestScope.errorMessage}">
-        <p style="color:red; border: 1px solid red; padding: 10px;"><c:out value="${requestScope.errorMessage}"/></p>
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
     </c:if>
      <c:if test="${not empty param.statusUpdateSuccess}">
-        <p style="color:green; border: 1px solid green; padding: 10px;">订单状态已成功更新！(Order status updated successfully!)</p>
+        <span class="success-message">订单状态已成功更新！(Order status updated successfully!)</span>
     </c:if>
     <c:if test="${not empty param.statusUpdateError}">
-        <p style="color:red; border: 1px solid red; padding: 10px;">更新订单状态失败: <c:out value="${param.statusUpdateError}"/></p>
+        <span class="error-message">更新订单状态失败: <c:out value="${param.statusUpdateError}"/></span>
     </c:if>
 
 
@@ -84,12 +84,12 @@
                 <p>此订单没有商品信息。(No items found for this order.)</p>
             </c:if>
 
-            <p style="margin-top:20px;"><a href="${pageContext.request.contextPath}/admin/viewOrders" class="admin-button back-link">返回订单列表 (Back to Order List)</a></p>
+            <p style="margin-top:20px;"><a href="${pageContext.request.contextPath}/admin/viewOrders" class="admin-button button-secondary back-link">返回订单列表 (Back to Order List)</a></p>
 
         </c:when>
         <c:otherwise>
-            <p>订单未找到。(Order not found.)</p>
-            <p><a href="${pageContext.request.contextPath}/admin/viewOrders" class="admin-button back-link">返回订单列表 (Back to Order List)</a></p>
+            <p class="info-message">订单未找到。(Order not found.)</p>
+            <p><a href="${pageContext.request.contextPath}/admin/viewOrders" class="admin-button button-secondary back-link">返回订单列表 (Back to Order List)</a></p>
         </c:otherwise>
     </c:choose>
 </section>

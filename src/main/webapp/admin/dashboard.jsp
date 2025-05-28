@@ -6,7 +6,7 @@
 <section id="admin-dashboard-section" style="padding: 20px;">
     <h2>管理后台 (Admin Dashboard)</h2>
 
-    <p>欢迎, <c:out value="${sessionScope.loggedInUser.username}"/>! 您已登录到管理后台。</p>
+    <p class="info-message">欢迎, <c:out value="${sessionScope.loggedInUser.username}"/>! 您已登录到管理后台。</p>
     <p>请从以下选项中选择一项进行管理：</p>
 
     <ul class="admin-links" style="list-style-type: none; padding: 0;">

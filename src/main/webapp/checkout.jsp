@@ -8,10 +8,10 @@
     <h2>结算中心 (Checkout)</h2>
 
     <c:if test="${not empty requestScope.errorMessage}">
-        <p style="color:red;"><c:out value="${requestScope.errorMessage}"/></p>
+        <span class="error-message"><c:out value="${requestScope.errorMessage}"/></span>
     </c:if>
     <c:if test="${not empty param.orderError}">
-        <p style="color:red;"><c:out value="${param.orderError}"/></p>
+        <span class="error-message"><c:out value="${param.orderError}"/></span>
     </c:if>
 
     <div class="checkout-container">
@@ -41,8 +41,8 @@
                 <h4 class="summary-total">订单总计 (Total): <fmt:formatNumber value="${cartTotal}" type="currency" currencySymbol="¥"/></h4>
             </c:if>
             <c:if test="${empty cartItems}">
-                <p>您的购物车是空的，无法结算。(Your cart is empty. Cannot proceed to checkout.)</p>
-                <p><a href="${pageContext.request.contextPath}/products.jsp">去购物 (Go Shopping)</a></p>
+                <p class="info-message">您的购物车是空的，无法结算。(Your cart is empty. Cannot proceed to checkout.)</p>
+                <p><a href="${pageContext.request.contextPath}/products.jsp" class="button">去购物 (Go Shopping)</a></p>
             </c:if>
         </div>
 
@@ -50,21 +50,21 @@
             <h3>收货信息 (Shipping Details)</h3>
             <c:if test="${not empty cartItems}"> <%-- Only show form if cart is not empty --%>
                 <form action="${pageContext.request.contextPath}/createOrder" method="POST">
-                    <p>
+                    <div class="form-group">
                         <label for="recipientName">收货人姓名:</label>
                         <input type="text" id="recipientName" name="recipientName" value="<c:out value='${sessionScope.loggedInUser.username}'/>" required>
-                    </p>
-                    <p>
+                    </div>
+                    <div class="form-group">
                         <label for="shippingAddress">收货地址:</label>
                         <textarea id="shippingAddress" name="shippingAddress" rows="3" required></textarea>
-                    </p>
-                    <p>
+                    </div>
+                    <div class="form-group">
                         <label for="contactPhone">联系电话:</label>
                         <input type="tel" id="contactPhone" name="contactPhone" value="<c:out value='${userPhoneNumber}'/>" required>
-                    </p>
-                    <p>
-                        <button type="submit" class="place-order-button">提交订单 (Place Order)</button>
-                    </p>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="button-primary place-order-button">提交订单 (Place Order)</button>
+                    </div>
                 </form>
             </c:if>
         </div>

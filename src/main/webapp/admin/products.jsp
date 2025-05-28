@@ -12,12 +12,21 @@
     </p>
 
     <c:if test="${not empty errorMessage}">
-        <p style="color:red;"><c:out value="${errorMessage}"/></p>
+        <span class="error-message"><c:out value="${errorMessage}"/></span>
+    </c:if>
+    <c:if test="${param.saveSuccess == 'true'}">
+        <span class="success-message">商品已成功保存！(Product saved successfully!)</span>
+    </c:if>
+    <c:if test="${not empty param.deleteSuccess}">
+        <span class="success-message">商品 ID ${param.productId} 已成功删除。(Product ID ${param.productId} deleted successfully.)</span>
+    </c:if>
+    <c:if test="${not empty param.deleteError}">
+        <span class="error-message"><c:out value="${param.deleteError}"/></span>
     </c:if>
 
     <c:choose>
         <c:when test="${empty productList}">
-            <p>没有找到商品。(No products found.)</p>
+            <p class="info-message">没有找到商品。(No products found.)</p>
         </c:when>
         <c:otherwise>
             <table class="admin-table">
