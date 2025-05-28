@@ -15,6 +15,7 @@ public class Product {
     private Timestamp creationDate;
     private int salesCount;
     private int views;
+    private String categoryName; // For displaying category name from JOIN
 
     // Default constructor
     public Product() {
@@ -124,6 +125,14 @@ public class Product {
         this.views = views;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -138,6 +147,7 @@ public class Product {
                 ", creationDate=" + creationDate +
                 ", salesCount=" + salesCount +
                 ", views=" + views +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }
