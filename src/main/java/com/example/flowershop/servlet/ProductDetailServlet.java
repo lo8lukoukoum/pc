@@ -38,12 +38,19 @@ public class ProductDetailServlet extends HttpServlet {
         Connection conn = null;
         PreparedStatement pstmtProduct = null;
         PreparedStatement pstmtUpdateViews = null;
+        PreparedStatement pstmtFetchReviews = null;
         ResultSet rsProduct = null;
+        ResultSet rsReviews = null;
         Product product = null;
+        List<com.example.flowershop.model.Review> reviewList = new ArrayList<>();
+
 
         String selectSql = "SELECT p.id, p.name, p.description, p.price, p.stock, p.category_id, c.name as category_name, p.image_url, p.status, p.views, p.creation_date, p.sales_count " +
                            "FROM products p LEFT JOIN categories c ON p.category_id = c.id WHERE p.id = ?";
         String updateViewsSql = "UPDATE products SET views = views + 1 WHERE id = ?";
+        String reviewsSql = "SELECT r.rating, r.comment, r.image_url, r.review_date, r.is_anonymous, u.username " +
+                            "FROM reviews r JOIN users u ON r.user_id = u.id " +
+                            "WHERE r.product_id = ? AND r.status = '已批准' ORDER BY r.review_date DESC";
 
         try {
             conn = DBConnection.getConnection();
@@ -72,9 +79,26 @@ public class ProductDetailServlet extends HttpServlet {
                 // Update views count in DB
                 pstmtUpdateViews = conn.prepareStatement(updateViewsSql);
                 pstmtUpdateViews.setInt(1, productId);
-                pstmtUpdateViews.executeUpdate();
+                pstmtUpdateViews.executeUpdate(); // DB view count updated
+
+                // Fetch approved reviews
+                pstmtFetchReviews = conn.prepareStatement(reviewsSql);
+                pstmtFetchReviews.setInt(1, productId);
+                rsReviews = pstmtFetchReviews.executeQuery();
+
+                while (rsReviews.next()) {
+                    com.example.flowershop.model.Review review = new com.example.flowershop.model.Review();
+                    review.setRating(rsReviews.getInt("rating"));
+                    review.setComment(rsReviews.getString("comment"));
+                    review.setImageUrl(rsReviews.getString("image_url"));
+                    review.setReviewDate(rsReviews.getTimestamp("review_date"));
+                    review.setAnonymous(rsReviews.getBoolean("is_anonymous"));
+                    review.setUsername(rsReviews.getString("username")); // Username from users table
+                    reviewList.add(review);
+                }
 
                 request.setAttribute("product", product);
+                request.setAttribute("reviewList", reviewList);
                 request.getRequestDispatcher("/product_detail.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/products.jsp?error=productNotFound");
@@ -85,8 +109,9 @@ public class ProductDetailServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Error fetching product details: " + e.getMessage());
             request.getRequestDispatcher("/products.jsp").forward(request, response); // Forward to products page with error
         } finally {
-            DBConnection.closeConnection(null, pstmtUpdateViews, null); // Close view update statement
-            DBConnection.closeConnection(conn, pstmtProduct, rsProduct); // Close product fetch statement & connection
+            DBConnection.closeConnection(null, pstmtUpdateViews, null); 
+            DBConnection.closeConnection(null, pstmtFetchReviews, rsReviews);
+            DBConnection.closeConnection(conn, pstmtProduct, rsProduct);
         }
     }
 }

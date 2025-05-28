@@ -14,6 +14,7 @@ public class Review {
     private Timestamp reviewDate;
     private boolean isAnonymous;
     private String status;
+    private String username; // For displaying reviewer's name from JOIN
 
     // Default constructor
     public Review() {
@@ -123,6 +124,14 @@ public class Review {
         this.status = status;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
@@ -137,6 +146,7 @@ public class Review {
                 ", reviewDate=" + reviewDate +
                 ", isAnonymous=" + isAnonymous +
                 ", status='" + status + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

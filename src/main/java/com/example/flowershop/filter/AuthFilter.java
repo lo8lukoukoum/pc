@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/user/*", "/admin/*", "/cart", "/cart.jsp", "/checkout.jsp", "/order_history.jsp", "/addToCart"})
+@WebFilter(urlPatterns = {"/user/*", "/admin/*", "/cart", "/cart.jsp", "/checkout", "/checkout.jsp", "/order_history.jsp", "/orderHistory", "/addToCart", "/updateCart", "/createOrder", "/orderDetail", "/loadReviewForm", "/submitReview"})
 public class AuthFilter implements Filter {
 
     @Override
@@ -31,7 +31,7 @@ public class AuthFilter implements Filter {
         boolean isLoggedIn = (session != null && session.getAttribute("loggedInUser") != null);
 
         // Check if the path is a protected path (excluding /admin/ for now, as it has specific role check)
-        boolean isProtectedUserPath = path.startsWith("/user/") || path.equals("/cart.jsp") || path.equals("/cart") || path.equals("/checkout.jsp") || path.equals("/order_history.jsp");
+        boolean isProtectedUserPath = path.startsWith("/user/") || path.equals("/cart.jsp") || path.equals("/cart") || path.equals("/checkout.jsp") || path.equals("/checkout") || path.equals("/order_history.jsp") || path.equals("/orderHistory") || path.equals("/addToCart") || path.equals("/updateCart") || path.equals("/createOrder") || path.equals("/orderDetail") || path.equals("/loadReviewForm") || path.equals("/submitReview");
 
         if (isProtectedUserPath && !isLoggedIn) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp?authError=true");

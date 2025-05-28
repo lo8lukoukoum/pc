@@ -50,8 +50,38 @@
             </div>
 
             <div id="product-reviews" style="margin-top: 30px;">
-                <h4>用户评价 (Product Reviews)</h4>
-                <p><em>评价功能将在后续实现。(Reviews will be implemented later.)</em></p>
+                <h4>用户评价 (Customer Reviews)</h4>
+                <c:choose>
+                    <c:when test="${not empty reviewList}">
+                        <c:forEach var="review" items="${reviewList}">
+                            <div class="review-item" style="border: 1px solid #eee; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                                <p>
+                                    <strong>评价者 (Reviewer):</strong> 
+                                    <c:choose>
+                                        <c:when test="${review.anonymous}">匿名用户 (Anonymous)</c:when>
+                                        <c:otherwise><c:out value="${review.username}"/></c:otherwise>
+                                    </c:choose>
+                                </p>
+                                <p>
+                                    <strong>评分 (Rating):</strong> 
+                                    <c:forEach begin="1" end="${review.rating}">★</c:forEach><c:forEach begin="${review.rating + 1}" end="5">☆</c:forEach>
+                                    (<c:out value="${review.rating}"/>/5)
+                                </p>
+                                <p><strong>评论 (Comment):</strong> <c:out value="${review.comment}"/></p>
+                                <c:if test="${not empty review.imageUrl}">
+                                    <p>
+                                        <img src="${pageContext.request.contextPath}/${review.imageUrl}" alt="Review Image" style="max-width:200px; max-height:200px; border-radius:4px;">
+                                    </p>
+                                </c:if>
+                                <p style="font-size:0.9em; color:#777;"><em><fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd HH:mm"/></em></p>
+                            </div>
+                            <hr style="border:0; border-top:1px solid #f0f0f0;">
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <p>暂无评价。(No reviews yet.)</p>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
         </c:when>

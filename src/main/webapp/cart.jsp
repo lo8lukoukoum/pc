@@ -58,16 +58,18 @@
                             <td>
                                 <form action="${pageContext.request.contextPath}/updateCart" method="POST" style="display:inline;">
                                     <input type="hidden" name="cartItemId" value="${item.cartItemId}">
-                                    <input type="number" name="quantity" value="${item.quantity}" min="1" max="99" style="width: 50px;">
-                                    <button type="submit" class="update-btn">更新 (Update)</button>
+                                    <input type="hidden" name="action" value="update">
+                                    <input type="number" name="quantity" value="${item.quantity}" min="1" max="99" style="width: 50px;" onchange="this.form.submit()">
+                                    <%-- <button type="submit" class="update-btn">更新 (Update)</button> --%>
+                                    <%-- Auto-submit onchange, or keep the button --%>
                                 </form>
                             </td>
                             <td><fmt:formatNumber value="${item.subtotal}" type="currency" currencySymbol="¥"/></td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/updateCart" method="POST" style="display:inline;">
                                     <input type="hidden" name="cartItemId" value="${item.cartItemId}">
-                                    <input type="hidden" name="quantity" value="0"> <%-- Setting quantity to 0 for removal --%>
-                                    <button type="submit" class="remove-btn">移除 (Remove)</button>
+                                    <input type="hidden" name="action" value="remove">
+                                    <button type="submit" class="remove-btn">删除 (Delete)</button>
                                 </form>
                             </td>
                         </tr>
